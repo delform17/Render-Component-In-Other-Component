@@ -1,0 +1,55 @@
+import React  from 'react';
+import ReactDOM from 'react-dom/client';
+import { useState, useEffect } from 'react';
+
+function MoreAction(){
+
+  const values = [9,5,2,6,3,8,4,7];
+  const newArr = [];
+
+  const [numToResearch, setNum] = useState(values);
+  let c = 0;
+  let a = 0;
+
+  function compareNumber(){
+    if(numToResearch[c] % 2 === 0){
+      console.log("Liczba jest parzysta"+numToResearch[c]);
+	  
+	  return numToResearch;
+    }else{
+      console.log("Liczba naturalna"+numToResearch[c]);
+    }
+    c+=1;
+}
+
+function checkActualNumber(){
+  if(numToResearch[a] > 5){
+    console.log("Liczba jest duza"+numToResearch[a]);
+  }else{
+    console.log("Liczba jest mala"+numToResearch[a]);
+  }
+  a+=1;
+    
+}
+
+useEffect(() => {
+      let interval = setInterval(() => {
+        compareNumber();
+      }, 2000);
+  
+  
+      setInterval(() => {
+        checkActualNumber();
+      },2000);
+    },[]);
+  return(
+    <div>
+      {compareNumber()}
+      {checkActualNumber()}
+</div>
+  )
+}
+
+  const execute = ReactDOM.createRoot(document.getElementById(('root')));
+  execute.render(<MoreAction />)
+
