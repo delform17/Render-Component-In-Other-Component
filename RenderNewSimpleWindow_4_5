@@ -2,10 +2,45 @@ import React  from 'react';
 import ReactDOM from 'react-dom/client';
 import { useState, useEffect } from 'react';
 
+even : {
+      color : 'darksilver',
+      fontStyle : 'regular',
+	  fontSize: '14px',
+      fontWeight: 'normal',
+      margin : '0 auto',
+      fontFamily : 'Sans-Serif',
+      color : '#f2db3f'
+   },
+
+   values : {
+    color : 'darksilver',
+    fontStyle : 'italic',
+	fontSize: '14px',
+    fontWeight: 'normal',
+    margin : '0 auto',
+    fontFamily : 'Verdana',
+    color : 'darkorange'
+  },
+  
+  title : {
+	fontStyle : 'regular',
+	fontSize: '18px',
+    fontWeight: 'normal',
+    margin : '0 auto',
+    fontFamily : 'Courier',
+    color : 'lightblue'
+  }
+
+}
+
+
 function MoreAction(){
 
   const values = [9,5,2,6,3,8,4,7];
   const newArr = [];
+
+  const [evenObj, setNewObj] = useState('');
+  const [oddObj, setNewOddObj] = useState('');
 
   const [numToResearch, setNum] = useState(values);
   let c = 0;
@@ -13,20 +48,25 @@ function MoreAction(){
 
   function compareNumber(){
     if(numToResearch[c] % 2 === 0){
-      console.log("Liczba jest parzysta"+numToResearch[c]);
-	  
-	  return numToResearch;
-    }else{
-      console.log("Liczba naturalna"+numToResearch[c]);
+      
+      setNewObj("Liczba jest parzysta"+numToResearch[c])
+	}else{
+      
+      setNewObj('Liczba naturalna'+numToResearch[c]);
     }
     c+=1;
+
+return numToResearch;
+      
 }
 
 function checkActualNumber(){
   if(numToResearch[a] > 5){
-    console.log("Liczba jest duza"+numToResearch[a]);
+    
+    setNewOddObj("Liczba jest duza"+numToResearch[a]);
   }else{
-    console.log("Liczba jest mala"+numToResearch[a]);
+    
+    setNewOddObj("Liczba jest duza"+numToResearch[a]);
   }
   a+=1;
     
@@ -44,9 +84,11 @@ useEffect(() => {
     },[]);
   return(
     <div>
-      {compareNumber()}
-      {checkActualNumber()}
-</div>
+      <div></div>
+        <h2 style={stylesForStatus.title}>{'Check is your number is even or odd'}</h2>
+        <p style={stylesForStatus.even}>{evenObj}</p><br />
+        <p style={stylesForStatus.values}>{oddObj}</p>        
+      </div>
   )
 }
 
