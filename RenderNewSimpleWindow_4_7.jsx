@@ -2,19 +2,36 @@ import React  from 'react';
 import ReactDOM from 'react-dom/client';
 import { useState, useEffect } from 'react';
 
+const infoStyles = {
+	
+	info : {
+	  color : 'lightgreen',
+      fontStyle : 'regular',
+	  fontSize: '14px',
+      fontWeight: 'normal',
+	  textTransform: 'uppercase',
+      margin : '0 auto',
+      fontFamily : "Avant Garde, Avantgarde, Century Gothic, CenturyGothic, AppleGothic, sans-serif",
+      
+	}
+}
+
 function CheckTheNumberAndBreak(){
   var count = 0;
   const listOfValues = [2,3,5,4,8,7,9,6];
+  const [info, setInfo] = useState('');
   const [numberObj, setNumberObj] = useState(listOfValues);
+  
 
   function moreThenFore(session){
 
     if(numberObj[count] < 8){
-        console.log("Liczba nie zostala znalezona "+numberObj[count]);
+       setInfo("The number wasn't found "+numberObj[count]);
         
     }
     else{
-      console.log("Liczba znaleziona "+numberObj[count]);
+      
+	  setInfo("The numer is found "+numberObj[count]);
       clearInterval(session);
         
     }
@@ -29,7 +46,8 @@ function CheckTheNumberAndBreak(){
   
   return(
     <div>
-      {moreThenFore(listOfValues)}
+      <p> {moreThenFore(listOfValues)} </p>
+	  <p style={infoStyles.info}>{info}</p>
     </div>
     
   )
